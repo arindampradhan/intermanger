@@ -269,11 +269,24 @@ function createGroup(group) {
 }
 
 
+function retryUntilWritten(doc) {
+    return db.get(doc._id).then(function (origDoc) {
+        doc._rev = origDoc._rev;
+        return db.put(doc);
+    }).catch(function (err) {
+        if (err.status === 409) {
+            return retryUntilWritten(doc);
+        } else { // new doc
+            return db.put(doc);
+        }
+    });
+}
+
 function assignUserToGroup(user, group) {
     if (!group.users_list_ids) group.users_list_ids = []
     if (!_.includes(group.users_list_ids, user._id)) {
         group.users_list_ids.push(user._id)
-        return db.put(group)
+        return retryUntilWritten(group)
     }
     alert('Already present in group!')
     throw 'Already present in group!';
@@ -284,7 +297,7 @@ function removeUserFromGroup(user, { ...group }) {
         _.remove(group.users_list_ids, (_id) => {
             return _id === user._id;
         });
-        return db.put(group)
+        return retryUntilWritten(group)
     }
     if (!group.users_list_ids) {
 
