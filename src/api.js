@@ -159,7 +159,10 @@ Date.prototype.substractHours = function (h) {
                                 ...i
                             }
                         })
-                        return db.bulkDocs(data)
+                        return db.bulkDocs(data).then(() => {
+                            alert('Data uploaded. Remove alert to get the dummy data')
+                            window.location.reload()
+                        })
                     })
                 })
         }
