@@ -2,3 +2,42 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import 'boostwatch';
 @import 'helpers';
+
+
+.sidenav {
+  min-width: 225px;
+  background-color: #ffffff;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  a {
+    padding: 20px 40px;
+    text-decoration: none;
+    color: #c0c3c9;
+
+    display: block;
+    &:hover {
+        color: $intermanager-primary;
+        background-color: #f5f7f7;
+    }
+  }
+
+  .profile {
+      img {
+          max-height: 90px;
+          border: 1.1px  solid rgba(0, 0, 0, .1);
+      }
+  }
+
+  .sidenav-header {
+      max-height: 50px;
+      img {
+          max-height: 40px;
+          padding: 0 10px 0 10px;
+      }
+  }
+}

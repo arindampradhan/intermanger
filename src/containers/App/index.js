@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import HomePage from "../HomePage/Loadable";
+import Sidebar from "../../components/Sidebar";
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -14,6 +15,7 @@ class App extends Component {
   render() {
     return (
       <AppWrapper>
+        <Sidebar />
         <Switch>
           <Redirect exact from="/notfound" to="/" />
           <Route exact path="/" component={HomePage} />
