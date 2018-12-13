@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import HomePage from "../HomePage/Loadable";
 import Sidebar from "../../components/Sidebar";
+import UserList from "../UsersList/Loadable";
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -19,6 +20,7 @@ class App extends Component {
         <Switch>
           <Redirect exact from="/notfound" to="/" />
           <Route exact path="/" component={HomePage} />
+          <Route path="/users" component={UserList} />
           <Route path="" component={() => (<div>Not Found</div>)} />
         </Switch>
       </AppWrapper>

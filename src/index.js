@@ -7,16 +7,25 @@ import { Provider } from "mobx-react";
 import { RouterStore, syncHistoryWithStore } from "mobx-react-router";
 import { Router } from "react-router";
 import './scss/main.scss';
+import HomeStore from './containers/HomePage/HomeStore'
+import UserStore from './containers/UsersList/UserStore'
 
 import api from './api'
 window.api = api
 
+
 const browserHistory = createBrowserHistory();
 const routingStore = new RouterStore();
+const homeStore = new HomeStore();
+const userStore = new UserStore();
+
 
 const stores = {
   // Key can be whatever you want
   routing: routingStore,
+  home: homeStore,
+  user: userStore,
+
   // ...other stores
 };
 

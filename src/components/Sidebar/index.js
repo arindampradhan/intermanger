@@ -1,9 +1,11 @@
 
+
+import { observer, inject } from "mobx-react";
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 
-function Sidebar({home, user}) {
+function Sidebar({ home, user }) {
     return (
         <div className="sidenav">
             <div className="sidenav-header">
@@ -27,8 +29,8 @@ function Sidebar({home, user}) {
                 </div>
             </div>
             <div className="gap-20"></div>
-            <Link href="#" to="#">Groups</Link>
-            <Link href="#" to="#">Users</Link>
+            <Link href="/" to="/">Groups</Link>
+            <Link href="/users" to="/users">Users</Link>
             <Link href="#" to>Create User</Link>
             <Link href="#" to>Create Group</Link>
         </div>
@@ -44,4 +46,4 @@ Sidebar.defaultProps = {
     }
 }
 
-export default Sidebar
+export default inject("home", 'user')(observer(Sidebar));
