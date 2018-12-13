@@ -15,6 +15,7 @@ export default class Home {
     return 0
   }
 
+
   @action("GET_GROUPS")
   getGroups() {
     api.allGroups()

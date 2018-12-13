@@ -1,6 +1,6 @@
 import { observable, computed, action, runInAction } from "mobx";
 import api from '../../api'
-// import fuzzysearch from 'fuzzysearch';
+import fuzzysearch from 'fuzzysearch';
 
 class User {
   @observable users = [];
@@ -17,6 +17,26 @@ class User {
       return this.users.length
     }
     return 0
+  }
+
+  @action("SEARCH_USER")
+  searchUser = (val) => {
+    const u = this.users.filter(item => {
+      return fuzzysearch(val.toLocaleLowerCase(), `${item.first_name} ${item.last_name}`.toLocaleLowerCase())
+    })
+    this.search_users = u
+  }
+
+
+
+  @action('GET_USER')
+  userViewed(_id) {
+    return api.getUser(_id)
+      .then(response => {
+        runInAction(() => {
+          this.user_viewed = response
+        })
+      })
   }
 
   @action("GET_USERS")
