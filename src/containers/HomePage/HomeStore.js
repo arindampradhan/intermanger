@@ -15,6 +15,42 @@ export default class Home {
     return 0
   }
 
+  @computed get current_group_user_count() {
+    if(this.current_group && this.current_group.users_list_ids) {
+      return this.current_group.users_list_ids.length
+    } 
+    return 0
+  }
+
+  @action("ADD_USER")
+  assignUserToGroup(user, group) {
+    return api.assignUserToGroup(user,group).then((response) => {
+      runInAction(() => {
+        this.getUsers()
+      })
+    }).catch(err => {
+      console.log(err.message)
+    })
+  }
+  @action("REMOVE_USER")
+  removeUserFromGroup(user, group) {
+    return api.removeUserFromGroup(user, group).then(() => {
+      runInAction(() => {
+        this.getUsers()
+      })
+    }).catch(err => {
+      console.log(err.message)
+    })
+  }
+
+  @action("IS_ACTIVE_USER")
+  isActiveUser(user, group) {
+    if (group && group.users_list_ids && user) {
+      return group.users_list_ids.includes(user._id)
+    }
+    return undefined
+  }
+
 
   @action("SEARCH_GROUP")
   searchGroup = (val) => {

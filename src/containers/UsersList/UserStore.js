@@ -27,6 +27,24 @@ class User {
     this.search_users = u
   }
 
+  @action("GET_ACTIVE_USERS")
+  getActiveUsers= (user_ids)=> {
+    if (!user_ids) return []
+    if(!this.users) return []
+    return this.users.filter((u, _id) => {
+      return user_ids.includes(u._id)
+    })
+  }
+
+  @action("GET_NON_ACTIVE_USERS")
+  getNonActiveUsers = (user_ids) => {
+    if (!user_ids) return []
+    if (!this.users) return []
+    return this.users.filter((u, _id) => {
+      return !user_ids.includes(u._id)
+    })
+  }
+
   @action('GET_USER')
   userViewed(_id) {
     return api.getUser(_id)

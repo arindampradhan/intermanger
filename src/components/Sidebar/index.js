@@ -31,8 +31,8 @@ function Sidebar({ home, user }) {
             <div className="gap-20"></div>
             <Link href="/" to="/">Groups</Link>
             <Link href="/users" to="/users">Users</Link>
-            <Link href="#" to>Create User</Link>
-            <Link href="#" to>Create Group</Link>
+            <Link href="#" to>Create User | TODO</Link>
+            <Link href="#" to>Create Group | TODO</Link>
         </div>
     )
 }

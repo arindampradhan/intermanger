@@ -142,3 +142,58 @@
         }
     }
 }
+
+
+.user--image {
+    max-height: 50px;
+}
+
+// group detail
+
+
+.btn--remove {
+    background: white;
+    padding: 2px 4px;
+    border: 1px solid $red;
+    color: $red;
+    border-radius: 4px;
+    font-size: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background: $red;
+        color: white;
+        transition: .4s;
+    }
+}
+
+.btn--add {
+    background: white;
+    padding: 2px 4px;
+    border: 1px solid $gray-400;;
+    color: $primary;
+    border-radius: 4px;
+    font-size: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background: #fafafa;
+        transition: .4s;
+    }
+}
+
+.group-detail {
+    overflow-y: auto;;
+    overflow-x:hidden; 
+    height:100vh;
+    .profile {
+
+        background-image: linear-gradient(to bottom, #1e70a1, #6290b6, #94b1cb, #c5d3e1, #f5f6f7);
+        min-height: 250px;
+        position: relative;
+        img {
+            bottom: 0;
+            position: absolute;
+        }        
+    }
+}
