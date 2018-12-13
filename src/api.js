@@ -1,7 +1,7 @@
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
 import axios from 'axios';
-
+import _ from 'lodash';
 PouchDB.plugin(PouchDBFind);
 const db = PouchDB("intermanager")
 
@@ -268,6 +268,46 @@ function createGroup(group) {
     })
 }
 
+
+function assignUserToGroup(user, group) {
+    if (!group.users_list_ids) group.users_list_ids = []
+    if (!_.includes(group.users_list_ids, user._id)) {
+        group.users_list_ids.push(user._id)
+        return db.put(group)
+    }
+    alert('Already present in group!')
+    throw 'Already present in group!';
+}
+
+function removeUserFromGroup(user, { ...group }) {
+    if (_.includes(group.users_list_ids, user._id)) {
+        _.remove(group.users_list_ids, (_id) => {
+            return _id === user._id;
+        });
+        return db.put(group)
+    }
+    if (!group.users_list_ids) {
+
+    }
+    alert('Not present in group!')
+    throw 'Not present in group!';
+}
+
+function deleteGroup(group) {
+    if (group.users_list_ids && group.type === 'group') {
+        return db.remove(group)
+    }
+    alert('Unable to perform action')
+}
+
+function deleteUser(user) {
+    // TODO: remove this user from all group
+    if (user.type === 'user') {
+        return db.remove(user)
+    }
+    alert('Unable to perform action')
+}
+
 window.exampleUser = {
     "user_id": "b0b967fb-b87d-4dd7-af4d-e9b02d1cc16b",
     "first_name": "Myrtia",
@@ -291,4 +331,8 @@ export default {
     allGroups,
     createUser,
     createGroup,
+    assignUserToGroup,
+    removeUserFromGroup,
+    deleteGroup,
+    deleteUser
 }
