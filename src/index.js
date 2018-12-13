@@ -6,6 +6,7 @@ import createBrowserHistory from "history/createBrowserHistory";
 import { Provider } from "mobx-react";
 import { RouterStore, syncHistoryWithStore } from "mobx-react-router";
 import { Router } from "react-router";
+import './scss/main.scss';
 
 
 const browserHistory = createBrowserHistory();
