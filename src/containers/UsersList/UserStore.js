@@ -27,8 +27,6 @@ class User {
     this.search_users = u
   }
 
-
-
   @action('GET_USER')
   userViewed(_id) {
     return api.getUser(_id)

@@ -1,6 +1,6 @@
 import { observable, computed, action, decorate, runInAction } from "mobx";
 import api from '../../api'
-// import fuzzysearch from 'fuzzysearch'
+import fuzzysearch from 'fuzzysearch'
 
 export default class Home {
   @observable groups = [];
@@ -15,6 +15,18 @@ export default class Home {
     return 0
   }
 
+
+  @action("SEARCH_GROUP")
+  searchGroup = (val) => {
+    const u = this.groups.filter(item => {
+      return fuzzysearch(val.toLocaleLowerCase(), item.name.toLocaleLowerCase())
+    })
+    this.search_groups = u
+  }
+
+  @action setCurrentGroup = (group) => {
+    this.current_group = group;
+  };
 
   @action("GET_GROUPS")
   getGroups() {

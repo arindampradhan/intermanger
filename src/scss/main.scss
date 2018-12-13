@@ -109,3 +109,36 @@
         }
     }
 }
+
+
+
+// group
+
+
+
+.list {
+
+    cursor: pointer;
+    padding: 30px 40px;
+    min-width: 420px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: none;
+
+    
+    &:hover {
+        color: $intermanager-primary;
+        background-color: #f5f7f7;
+    }
+    .Bitmap {
+        max-width: 31px;
+        max-height: 31px;
+        opacity: 0.81;
+        border: 1px solid #f5f7f7;
+        margin-right: 5px;
+        &:hover {
+            transition: .3s;
+            opacity: 1;
+        }
+    }
+}
