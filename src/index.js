@@ -7,7 +7,8 @@ import { Provider } from "mobx-react";
 import { RouterStore, syncHistoryWithStore } from "mobx-react-router";
 import { Router } from "react-router";
 import './scss/main.scss';
-
+import api from './api'
+window.api = api
 
 const browserHistory = createBrowserHistory();
 const routingStore = new RouterStore();
